@@ -1,0 +1,38 @@
+<!-- This is the results page-->
+
+<!-- It displays the Simplex method step by step, 
+including tableau updates, entering/leaving variables, and row operations.
+The user can save this page as a PDF. -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simplex Steps</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Simplex Algorithm Steps</h2>
+        <h3>Objective Function:</h3>
+        <p>Z = {% for coeff in c %}{{ coeff }} x{{ loop.index }} {% if not loop.last %} + {% endif %}{% endfor %}</p>
+        
+        <h3>Constraints:</h3>
+        <ul>
+            {% for i in range(A|length) %}
+                <li>
+                    {% for j in range(A[i]|length) %}
+                        {{ A[i][j] }} x{{ j+1 }} {% if not loop.last %} + {% endif %}
+                    {% endfor %}
+                    ≤ {{ b[i] }}
+                </li>
+            {% endfor %}
+        </ul>
+
+        <h3>Simplex Tableau (To be Implemented)</h3>
+        <p>Step-by-step simplex iterations will be displayed here.</p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!-- This is the main page -->
+
+<!-- It lets the user input the number of variables, number of constraints, and choose between Min/Max.
+Dynamically generates input fields for the objective function and constraints. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simplex Solver - Input</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Simplex Solver</h2>
+        <label for="numVars">Number of Variables:</label>
+        <input type="number" id="numVars" min="1" required>
+
+        <label for="numConstraints">Number of Constraints:</label>
+        <input type="number" id="numConstraints" min="1" required>
+
+        <label for="optType">Optimization Type:</label>
+        <select id="optType">
+            <option value="max">Maximize</option>
+            <option value="min">Minimize</option>
+        </select>
+
+        <button onclick="generateFields()">Generate Fields</button>
+
+        <form id="simplexForm" action="/solve" method="POST">
+            <div id="fields"></div>
+            <button type="submit">Solve</button>
+        </form>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
